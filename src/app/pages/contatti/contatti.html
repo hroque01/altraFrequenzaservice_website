@@ -1,4 +1,179 @@
-<section class="container mx-auto px-6 py-24">
-  <h1 class="text-4xl font-bold mb-6">Contatti</h1>
-  <p class="text-lg">Pagina in costruzione.</p>
+<section class="contatti-hero">
+  <div class="container-x">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <span class="eyebrow">Iniziamo</span>
+        <h1>
+          Raccontaci<br>
+          <span class="italic accent">il tuo evento.</span>
+        </h1>
+        <p class="lead">
+          Compila il form qui a fianco o scrivici direttamente.
+          Ti rispondiamo <strong>entro 24 ore</strong> con un sopralluogo
+          o un preventivo dettagliato. Senza impegno.
+        </p>
+
+        <div class="contact-info">
+          <a href="tel:+390000000000" class="info-item">
+            <div class="info-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="lbl">Telefono</div>
+              <div class="val">+39 000 000 0000</div>
+            </div>
+          </a>
+
+          <a href="mailto:info@altrafrequenza.it" class="info-item">
+            <div class="info-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <div>
+              <div class="lbl">Email</div>
+              <div class="val">info&#64;altrafrequenza.it</div>
+            </div>
+          </a>
+
+          <div class="info-item static">
+            <div class="info-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div>
+              <div class="lbl">Sede</div>
+              <div class="val">Italia</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-wrap" appReveal>
+        @if (!submitted()) {
+          <form (submit)="onSubmit($event)" class="form">
+            <div class="form-header">
+              <span class="form-num">01</span>
+              <h3>Richiedi un preventivo</h3>
+            </div>
+
+            <div class="field">
+              <label>Nome e cognome *</label>
+              <input
+                type="text"
+                required
+                [value]="form().nome"
+                (input)="form.set({ ...form(), nome: $any($event.target).value })"
+                placeholder="Mario Rossi"
+              />
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label>Email *</label>
+                <input
+                  type="email"
+                  required
+                  [value]="form().email"
+                  (input)="form.set({ ...form(), email: $any($event.target).value })"
+                  placeholder="mario@email.it"
+                />
+              </div>
+
+              <div class="field">
+                <label>Telefono</label>
+                <input
+                  type="tel"
+                  [value]="form().telefono"
+                  (input)="form.set({ ...form(), telefono: $any($event.target).value })"
+                  placeholder="+39 ..."
+                />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label>Tipo di evento</label>
+                <select
+                  [value]="form().tipoEvento"
+                  (change)="form.set({ ...form(), tipoEvento: $any($event.target).value })"
+                >
+                  <option value="">Seleziona...</option>
+                  @for (t of tipiEvento; track t) {
+                    <option [value]="t">{{ t }}</option>
+                  }
+                </select>
+              </div>
+
+              <div class="field">
+                <label>Data evento</label>
+                <input
+                  type="date"
+                  [value]="form().data"
+                  (input)="form.set({ ...form(), data: $any($event.target).value })"
+                />
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Raccontaci l'evento *</label>
+              <textarea
+                required
+                rows="5"
+                [value]="form().messaggio"
+                (input)="form.set({ ...form(), messaggio: $any($event.target).value })"
+                placeholder="Tipologia di evento, location, numero di partecipanti, servizi richiesti..."
+              ></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary form-submit">
+              Invia richiesta
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14M13 5l7 7-7 7"/>
+              </svg>
+            </button>
+
+            <p class="privacy-note">
+              Inviando questa richiesta accetti la nostra privacy policy.
+              I tuoi dati non verranno mai condivisi.
+            </p>
+          </form>
+        } @else {
+          <div class="form-success">
+            <div class="success-icon">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <h3>Richiesta inviata.</h3>
+            <p>Grazie {{ form().nome }}. Ti ricontattiamo entro 24 ore.</p>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="garanzia">
+  <div class="container-x">
+    <div class="garanzia-grid">
+      <div class="g-item" appReveal>
+        <div class="g-num">24h</div>
+        <div class="g-text">Risposta garantita entro 24 ore</div>
+      </div>
+      <div class="g-item" appReveal class="delay-1">
+        <div class="g-num">€0</div>
+        <div class="g-text">Sopralluogo e preventivo gratuiti</div>
+      </div>
+      <div class="g-item" appReveal class="delay-2">
+        <div class="g-num">100%</div>
+        <div class="g-text">Riservatezza e nessun impegno</div>
+      </div>
+    </div>
+  </div>
 </section>

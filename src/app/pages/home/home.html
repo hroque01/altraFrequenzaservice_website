@@ -1,3 +1,229 @@
-<section class="min-h-screen flex items-center justify-center">
-  <h1 class="text-5xl font-bold">Altra Frequenza Service</h1>
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="hero">
+  <div class="hero-bg">
+    <img
+      src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=2400&q=80"
+      alt=""
+      class="hero-img"
+    />
+    <div class="hero-overlay"></div>
+    <div class="hero-grid"></div>
+  </div>
+
+  <div class="container-x hero-content">
+    <div class="hero-eyebrow">
+      <span class="dot"></span>
+      SERVICE TECNICO PER EVENTI · ITALIA
+    </div>
+
+    <h1 class="hero-title">
+      <span class="line">Audio. Luci.</span>
+      <span class="line">Video. Strutture.</span>
+      <span class="line italic">Un solo team.</span>
+    </h1>
+
+    <p class="hero-sub">
+      Service tecnico chiavi in mano per eventi che non possono permettersi un imprevisto.
+      Dal concerto live alla convention aziendale: <strong>noi montiamo, voi vincete.</strong>
+    </p>
+
+    <div class="hero-cta">
+      <a routerLink="/contatti" class="btn-primary">
+        Richiedi un preventivo
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M5 12h14M13 5l7 7-7 7"/>
+        </svg>
+      </a>
+      <a routerLink="/gallery" class="btn-ghost">Guarda i nostri eventi</a>
+    </div>
+  </div>
+
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="num">12+</span>
+      <span class="lbl">Anni</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="num">400+</span>
+      <span class="lbl">Eventi</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="num">4</span>
+      <span class="lbl">Settori</span>
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>SCROLL</span>
+    <div class="line"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════ NUMERI ═══════════════════ -->
+<section class="section numeri-section">
+  <div class="container-x">
+    <div class="numeri-grid">
+      @for (n of numeri; track n.label; let i = $index) {
+        <div class="numero" appReveal [class]="'delay-' + i">
+          <div class="numero-value">
+            {{ n.value }}<span class="suffix">{{ n.suffix }}</span>
+          </div>
+          <div class="numero-label">{{ n.label }}</div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ SETTORI BENTO ═══════════════════ -->
+<section class="section settori-section">
+  <div class="container-x">
+    <div class="section-head" appReveal>
+      <span class="eyebrow">I nostri settori</span>
+      <h2>
+        Quattro discipline.<br>
+        <span class="italic accent">Una sola squadra.</span>
+      </h2>
+      <p class="section-intro">
+        Quando un cliente ci chiama per uno solo dei nostri servizi, alla fine
+        dell'evento ci chiede gli altri tre. Ed è il complimento più bello.
+      </p>
+    </div>
+
+    <div class="bento">
+      @for (s of settori; track s.slug; let i = $index) {
+        <a
+          [routerLink]="['/settori', s.slug]"
+          class="bento-card"
+          appReveal
+          [class]="'delay-' + i + ' bento-' + s.slug"
+        >
+          <div class="bento-img" [style.background-image]="'url(' + s.immagine + ')'"></div>
+          <div class="bento-overlay"></div>
+          <div class="bento-content">
+            <div class="bento-num">{{ s.numero }}</div>
+            <h3 class="bento-title">{{ s.titolo }}</h3>
+            <p class="bento-claim">{{ s.claim }}</p>
+            <span class="bento-link">
+              Scopri di più
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14M13 5l7 7-7 7"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ PERCHÉ NOI ═══════════════════ -->
+<section class="section perche-section">
+  <div class="container-x">
+    <div class="perche-layout">
+      <div class="perche-head" appReveal>
+        <span class="eyebrow">Perché sceglierci</span>
+        <h2>
+          Chi ci sceglie<br>
+          <span class="italic accent">torna a chiamarci.</span>
+        </h2>
+      </div>
+
+      <div class="perche-list">
+        @for (p of perche; track p.num; let i = $index) {
+          <div class="perche-item" appReveal [class]="'delay-' + i">
+            <div class="perche-num">{{ p.num }}</div>
+            <div class="perche-body">
+              <h3>{{ p.titolo }}</h3>
+              <p>{{ p.desc }}</p>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ EVENTI RECENTI ═══════════════════ -->
+<section class="section eventi-section">
+  <div class="container-x">
+    <div class="section-head split" appReveal>
+      <div>
+        <span class="eyebrow">Eventi recenti</span>
+        <h2>
+          Lavori che parlano<br>
+          <span class="italic accent">prima di noi.</span>
+        </h2>
+      </div>
+      <a routerLink="/gallery" class="btn-ghost">
+        Vedi tutta la gallery
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M5 12h14M13 5l7 7-7 7"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="eventi-grid">
+      @for (e of eventiAnteprima; track e.id; let i = $index) {
+        <a routerLink="/gallery" class="evento-card" appReveal [class]="'delay-' + (i % 3)">
+          <div class="evento-img-wrap">
+            <img [src]="e.immagine" [alt]="e.titolo" loading="lazy" />
+          </div>
+          <div class="evento-info">
+            <div class="evento-meta">
+              <span>{{ e.tipo }}</span>
+              <span>·</span>
+              <span>{{ e.anno }}</span>
+            </div>
+            <h4>{{ e.titolo }}</h4>
+            <div class="evento-tags">
+              @for (s of e.servizi; track s) {
+                <span>{{ s }}</span>
+              }
+            </div>
+          </div>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ MARQUEE CLIENTI ═══════════════════ -->
+<section class="clienti-marquee">
+  <div class="marquee">
+    @for (rep of [1, 2]; track rep) {
+      <div class="marquee-track">
+        @for (c of clientiLoghi; track c) {
+          <span class="cliente">{{ c }}</span>
+          <span class="dot">●</span>
+        }
+      </div>
+    }
+  </div>
+</section>
+
+<!-- ═══════════════════ CTA FINALE ═══════════════════ -->
+<section class="cta-final">
+  <div class="container-x">
+    <div class="cta-box" appReveal>
+      <div class="cta-bg"></div>
+      <div class="cta-content">
+        <span class="eyebrow">Pronto a iniziare</span>
+        <h2>
+          Hai una data.<br>
+          <span class="italic accent">Noi abbiamo il resto.</span>
+        </h2>
+        <p>
+          Raccontaci il tuo evento: in 24 ore ti rispondiamo con un sopralluogo
+          o un preventivo dettagliato. Senza impegno.
+        </p>
+        <a routerLink="/contatti" class="btn-primary">
+          Iniziamo
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M13 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
 </section>

@@ -1,0 +1,103 @@
+@let s = settore();
+
+<section class="settore-hero">
+  <div class="hero-bg">
+    <img [src]="s.immagine" [alt]="s.titolo" />
+    <div class="overlay"></div>
+  </div>
+
+  <div class="container-x hero-content">
+    <div class="hero-num">{{ s.numero }}</div>
+    <span class="eyebrow">Settore · {{ s.titolo }}</span>
+    <h1 class="hero-title">
+      {{ s.claim }}
+    </h1>
+  </div>
+</section>
+
+<section class="section descrizione-section">
+  <div class="container-x">
+    <div class="descrizione-grid">
+      <div class="desc-text" appReveal>
+        <span class="eyebrow">Cosa offriamo</span>
+        <h2>Tecnologia, esperienza e <span class="accent italic">attenzione al dettaglio.</span></h2>
+        <p>{{ s.descrizione }}</p>
+      </div>
+
+      <div class="desc-list" appReveal>
+        @for (servizio of s.servizi; track servizio; let i = $index) {
+          <div class="servizio-item">
+            <span class="dot">{{ i + 1 < 10 ? '0' + (i + 1) : i + 1 }}</span>
+            <span>{{ servizio }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+@if (eventiCorrelati().length > 0) {
+  <section class="section correlati-section">
+    <div class="container-x">
+      <div class="section-head" appReveal>
+        <span class="eyebrow">Eventi recenti</span>
+        <h2>Dove abbiamo <span class="accent italic">acceso il palco.</span></h2>
+      </div>
+
+      <div class="correlati-grid">
+        @for (e of eventiCorrelati(); track e.id; let i = $index) {
+          <a routerLink="/gallery" class="correlato-card" appReveal [class]="'delay-' + (i % 4)">
+            <div class="img-wrap">
+              <img [src]="e.immagine" [alt]="e.titolo" loading="lazy" />
+            </div>
+            <div class="info">
+              <div class="meta">{{ e.tipo }} · {{ e.anno }}</div>
+              <h4>{{ e.titolo }}</h4>
+            </div>
+          </a>
+        }
+      </div>
+    </div>
+  </section>
+}
+
+<section class="altri-section">
+  <div class="container-x">
+    <div class="section-head" appReveal>
+      <span class="eyebrow">Continua ad esplorare</span>
+      <h2>Gli altri <span class="accent italic">settori.</span></h2>
+    </div>
+
+    <div class="altri-grid">
+      @for (a of altri(); track a.slug; let i = $index) {
+        <a [routerLink]="['/settori', a.slug]" class="altro-card" appReveal [class]="'delay-' + i">
+          <img [src]="a.immagine" [alt]="a.titolo" loading="lazy" />
+          <div class="overlay"></div>
+          <div class="content">
+            <span class="num">{{ a.numero }}</span>
+            <h3>{{ a.titolo }}</h3>
+            <span class="link">Esplora →</span>
+          </div>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="container-x">
+    <div class="cta-box" appReveal>
+      <div class="cta-bg"></div>
+      <div class="cta-content">
+        <h2>Hai un evento che richiede <span class="accent italic">{{ s.titolo.toLowerCase() }}</span>?</h2>
+        <p>Raccontacelo. Ti ricontattiamo entro 24 ore con una proposta su misura.</p>
+        <a routerLink="/contatti" class="btn-primary">
+          Richiedi un preventivo
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M5 12h14M13 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

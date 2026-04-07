@@ -1,9 +1,48 @@
-<section class="container mx-auto px-6 py-24">
-  <h1 class="text-4xl font-bold mb-8">Settori</h1>
-  <nav class="flex gap-4 mb-12">
-    @for (s of settori; track s.slug) {
-      <a [routerLink]="['/settori', s.slug]" class="px-4 py-2 border rounded hover:bg-black/5">{{ s.label }}</a>
+<section class="page-hero">
+  <div class="page-hero-bg">
+    <img src="https://images.unsplash.com/photo-1574391884720-bbc049ec09ad?auto=format&fit=crop&w=2400&q=80" alt="" />
+    <div class="overlay"></div>
+  </div>
+  <div class="container-x page-hero-content">
+    <span class="eyebrow">I nostri settori</span>
+    <h1>
+      Quattro discipline.<br>
+      <span class="italic accent">Una sola squadra.</span>
+    </h1>
+    <p class="lead">
+      Audio, luci, video e strutture. Servizi che si parlano tra loro perché
+      vengono dalla stessa squadra. Tu hai un solo numero da chiamare.
+    </p>
+  </div>
+</section>
+
+<section class="section settori-list">
+  <div class="container-x">
+    @for (s of settori; track s.slug; let i = $index; let isLast = $last) {
+      <a
+        [routerLink]="['/settori', s.slug]"
+        class="settore-row"
+        [class.reverse]="i % 2 === 1"
+        appReveal
+      >
+        <div class="settore-img">
+          <img [src]="s.immagine" [alt]="s.titolo" loading="lazy" />
+          <div class="img-overlay"></div>
+          <div class="img-num">{{ s.numero }}</div>
+        </div>
+
+        <div class="settore-info">
+          <span class="eyebrow">{{ s.numero }} · {{ s.titolo }}</span>
+          <h2>{{ s.claim }}</h2>
+          <p>{{ s.descrizione }}</p>
+          <span class="settore-link">
+            Esplora il settore
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M5 12h14M13 5l7 7-7 7"/>
+            </svg>
+          </span>
+        </div>
+      </a>
     }
-  </nav>
-  <router-outlet />
+  </div>
 </section>

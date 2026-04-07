@@ -1,15 +1,57 @@
-<header class="sticky top-0 z-50 backdrop-blur bg-white/80 border-b">
-  <div class="container mx-auto px-6 py-4 flex items-center justify-between">
-    <a routerLink="/" class="text-xl font-bold tracking-wide">Altra Frequenza</a>
-    <nav class="flex gap-6">
+<header
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
+  [class.scrolled]="scrolled()"
+>
+  <div class="container-x flex items-center justify-between h-20">
+    <a routerLink="/" class="logo flex items-center gap-2" (click)="closeMenu()">
+      <span class="logo-mark">
+        <span class="logo-dot"></span>
+      </span>
+      <span class="logo-text">
+        <span class="logo-name">Altra Frequenza</span>
+        <span class="logo-sub">SERVICE</span>
+      </span>
+    </a>
+
+    <nav class="desktop-nav">
       @for (item of menu; track item.path) {
         <a
           [routerLink]="item.path"
-          routerLinkActive="font-semibold underline"
+          routerLinkActive="active"
           [routerLinkActiveOptions]="{ exact: !!item.exact }"
-          class="hover:opacity-70 transition"
-        >{{ item.label }}</a>
+          class="nav-link"
+        >
+          <span>{{ item.label }}</span>
+        </a>
       }
+      <a routerLink="/contatti" class="btn-primary nav-cta">
+        Preventivo
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M5 12h14M13 5l7 7-7 7"/>
+        </svg>
+      </a>
     </nav>
+
+    <button class="burger" (click)="toggleMenu()" [class.open]="menuOpen()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
+
+  @if (menuOpen()) {
+    <div class="mobile-menu">
+      @for (item of menu; track item.path; let i = $index) {
+        <a
+          [routerLink]="item.path"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: !!item.exact }"
+          (click)="closeMenu()"
+          class="mobile-link"
+          [style.animation-delay.s]="0.05 * i"
+        >
+          <span class="mobile-num">0{{ i + 1 }}</span>
+          {{ item.label }}
+        </a>
+      }
+    </div>
+  }
 </header>

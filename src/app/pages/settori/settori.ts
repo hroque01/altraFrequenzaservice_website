@@ -1,17 +1,14 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLink } from '@angular/router';
+import { RevealDirective } from '../../shared/reveal.directive';
+import { SETTORI } from '../../shared/site-data';
 
 @Component({
   selector: 'app-settori',
-  imports: [RouterLink, RouterOutlet],
+  imports: [RouterLink, RevealDirective],
   templateUrl: './settori.html',
   styleUrl: './settori.scss'
 })
 export class SettoriPage {
-  readonly settori = [
-    { slug: 'audio', label: 'Audio' },
-    { slug: 'luci', label: 'Luci' },
-    { slug: 'video', label: 'Video' },
-    { slug: 'strutture', label: 'Strutture' }
-  ];
+  readonly settori = SETTORI;
 }
