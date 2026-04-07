@@ -3,7 +3,7 @@
   [class.scrolled]="scrolled()"
 >
   <div class="container-x flex items-center justify-between h-20">
-    <a routerLink="/" class="logo flex items-center gap-2" (click)="closeMenu()">
+    <a href="#home" (click)="scrollTo('home', $event)" class="logo flex items-center gap-2">
       <span class="logo-mark">
         <span class="logo-dot"></span>
       </span>
@@ -14,17 +14,17 @@
     </a>
 
     <nav class="desktop-nav">
-      @for (item of menu; track item.path) {
+      @for (item of menu; track item.id) {
         <a
-          [routerLink]="item.path"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: !!item.exact }"
+          [href]="'#' + item.id"
+          (click)="scrollTo(item.id, $event)"
           class="nav-link"
+          [class.active]="activeSection() === item.id"
         >
           <span>{{ item.label }}</span>
         </a>
       }
-      <a routerLink="/contatti" class="btn-primary nav-cta">
+      <a href="#contatti" (click)="scrollTo('contatti', $event)" class="btn-primary nav-cta">
         Preventivo
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
           <path d="M5 12h14M13 5l7 7-7 7"/>
@@ -39,13 +39,12 @@
 
   @if (menuOpen()) {
     <div class="mobile-menu">
-      @for (item of menu; track item.path; let i = $index) {
+      @for (item of menu; track item.id; let i = $index) {
         <a
-          [routerLink]="item.path"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: !!item.exact }"
-          (click)="closeMenu()"
+          [href]="'#' + item.id"
+          (click)="scrollTo(item.id, $event)"
           class="mobile-link"
+          [class.active]="activeSection() === item.id"
           [style.animation-delay.s]="0.05 * i"
         >
           <span class="mobile-num">0{{ i + 1 }}</span>

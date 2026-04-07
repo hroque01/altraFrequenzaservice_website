@@ -24,7 +24,7 @@ export const SETTORI: Settore[] = [
       'Diffusione su grandi superfici'
     ],
     immagine:
-      'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1600&q=80'
+      'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?auto=format&fit=crop&w=1600&q=80'
   },
   {
     slug: 'luci',
@@ -41,7 +41,7 @@ export const SETTORI: Settore[] = [
       'Effetti speciali: hazer, smoke, CO2'
     ],
     immagine:
-      'https://images.unsplash.com/photo-1574391884720-bbc049ec09ad?auto=format&fit=crop&w=1600&q=80'
+      'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1600&q=80'
   },
   {
     slug: 'video',
@@ -58,7 +58,7 @@ export const SETTORI: Settore[] = [
       'Riprese e post-produzione'
     ],
     immagine:
-      'https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?auto=format&fit=crop&w=1600&q=80'
+      'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1600&q=80'
   },
   {
     slug: 'strutture',
@@ -75,7 +75,7 @@ export const SETTORI: Settore[] = [
       'Montaggio con tecnici qualificati'
     ],
     immagine:
-      'https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?auto=format&fit=crop&w=1600&q=80'
+      'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=1600&q=80'
   }
 ];
 

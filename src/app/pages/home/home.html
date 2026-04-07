@@ -1,5 +1,5 @@
 <!-- ═══════════════════ HERO ═══════════════════ -->
-<section class="hero">
+<section class="hero" id="home">
   <div class="hero-bg">
     <img
       src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=2400&q=80"
@@ -28,34 +28,20 @@
     </p>
 
     <div class="hero-cta">
-      <a routerLink="/contatti" class="btn-primary">
+      <a href="#contatti" class="btn-primary">
         Richiedi un preventivo
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
           <path d="M5 12h14M13 5l7 7-7 7"/>
         </svg>
       </a>
-      <a routerLink="/gallery" class="btn-ghost">Guarda i nostri eventi</a>
+      <a href="#gallery" class="btn-ghost">Guarda i nostri eventi</a>
     </div>
   </div>
 
   <div class="hero-meta">
-    <div class="hero-meta-item">
-      <span class="num">12+</span>
-      <span class="lbl">Anni</span>
-    </div>
-    <div class="hero-meta-item">
-      <span class="num">400+</span>
-      <span class="lbl">Eventi</span>
-    </div>
-    <div class="hero-meta-item">
-      <span class="num">4</span>
-      <span class="lbl">Settori</span>
-    </div>
-  </div>
-
-  <div class="scroll-hint">
-    <span>SCROLL</span>
-    <div class="line"></div>
+    <div class="hero-meta-item"><span class="num">12+</span><span class="lbl">Anni</span></div>
+    <div class="hero-meta-item"><span class="num">400+</span><span class="lbl">Eventi</span></div>
+    <div class="hero-meta-item"><span class="num">4</span><span class="lbl">Settori</span></div>
   </div>
 </section>
 
@@ -65,9 +51,7 @@
     <div class="numeri-grid">
       @for (n of numeri; track n.label; let i = $index) {
         <div class="numero" appReveal [class]="'delay-' + i">
-          <div class="numero-value">
-            {{ n.value }}<span class="suffix">{{ n.suffix }}</span>
-          </div>
+          <div class="numero-value">{{ n.value }}<span class="suffix">{{ n.suffix }}</span></div>
           <div class="numero-label">{{ n.label }}</div>
         </div>
       }
@@ -75,28 +59,69 @@
   </div>
 </section>
 
-<!-- ═══════════════════ SETTORI BENTO ═══════════════════ -->
-<section class="section settori-section">
+<!-- ═══════════════════ CHI SIAMO ═══════════════════ -->
+<section class="section chi-siamo-section" id="chi-siamo">
+  <div class="container-x">
+    <div class="chi-grid">
+      <div class="chi-text" appReveal>
+        <span class="eyebrow">Chi siamo</span>
+        <h2>
+          Dodici anni a montare,<br>
+          smontare, <span class="italic accent">e ripartire.</span>
+        </h2>
+        <p>
+          Siamo nati come piccolo service per concerti di provincia.
+          Oggi gestiamo eventi corporate, festival e produzioni live in tutta Italia.
+          Una cosa non è cambiata: <strong>non abbiamo mai lasciato un palco fermo.</strong>
+        </p>
+        <p>
+          Crediamo che un service non venda attrezzatura, ma tranquillità.
+          E la tranquillità, quando hai 5.000 persone davanti al palco, non ha prezzo.
+        </p>
+      </div>
+
+      <div class="chi-images" appReveal>
+        <div class="img-1">
+          <img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?auto=format&fit=crop&w=900&q=80" alt="" loading="lazy" />
+        </div>
+        <div class="img-2">
+          <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=600&q=80" alt="" loading="lazy" />
+        </div>
+      </div>
+    </div>
+
+    <div class="valori-grid">
+      @for (v of valori; track v.titolo; let i = $index) {
+        <div class="valore" appReveal [class]="'delay-' + (i % 4)">
+          <div class="valore-num">0{{ i + 1 }}</div>
+          <h3>{{ v.titolo }}</h3>
+          <p>{{ v.desc }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ SETTORI ═══════════════════ -->
+<section class="section settori-section" id="settori">
   <div class="container-x">
     <div class="section-head" appReveal>
       <span class="eyebrow">I nostri settori</span>
-      <h2>
-        Quattro discipline.<br>
-        <span class="italic accent">Una sola squadra.</span>
-      </h2>
+      <h2>Quattro discipline.<br><span class="italic accent">Una sola squadra.</span></h2>
       <p class="section-intro">
-        Quando un cliente ci chiama per uno solo dei nostri servizi, alla fine
-        dell'evento ci chiede gli altri tre. Ed è il complimento più bello.
+        Quando un cliente ci chiama per uno solo dei nostri servizi,
+        alla fine dell'evento ci chiede gli altri tre. Ed è il complimento più bello.
       </p>
     </div>
 
     <div class="bento">
       @for (s of settori; track s.slug; let i = $index) {
-        <a
-          [routerLink]="['/settori', s.slug]"
+        <button
+          type="button"
+          (click)="apriSettore(s)"
           class="bento-card"
           appReveal
-          [class]="'delay-' + i + ' bento-' + s.slug"
+          [class]="'delay-' + i"
         >
           <div class="bento-img" [style.background-image]="'url(' + s.immagine + ')'"></div>
           <div class="bento-overlay"></div>
@@ -111,7 +136,7 @@
               </svg>
             </span>
           </div>
-        </a>
+        </button>
       }
     </div>
   </div>
@@ -123,10 +148,7 @@
     <div class="perche-layout">
       <div class="perche-head" appReveal>
         <span class="eyebrow">Perché sceglierci</span>
-        <h2>
-          Chi ci sceglie<br>
-          <span class="italic accent">torna a chiamarci.</span>
-        </h2>
+        <h2>Chi ci sceglie<br><span class="italic accent">torna a chiamarci.</span></h2>
       </div>
 
       <div class="perche-list">
@@ -144,45 +166,46 @@
   </div>
 </section>
 
-<!-- ═══════════════════ EVENTI RECENTI ═══════════════════ -->
-<section class="section eventi-section">
+<!-- ═══════════════════ GALLERY ═══════════════════ -->
+<section class="section gallery-section" id="gallery">
   <div class="container-x">
     <div class="section-head split" appReveal>
       <div>
-        <span class="eyebrow">Eventi recenti</span>
-        <h2>
-          Lavori che parlano<br>
-          <span class="italic accent">prima di noi.</span>
-        </h2>
+        <span class="eyebrow">Portfolio</span>
+        <h2>Lavori che parlano<br><span class="italic accent">prima di noi.</span></h2>
       </div>
-      <a routerLink="/gallery" class="btn-ghost">
-        Vedi tutta la gallery
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-          <path d="M5 12h14M13 5l7 7-7 7"/>
-        </svg>
-      </a>
     </div>
 
-    <div class="eventi-grid">
-      @for (e of eventiAnteprima; track e.id; let i = $index) {
-        <a routerLink="/gallery" class="evento-card" appReveal [class]="'delay-' + (i % 3)">
-          <div class="evento-img-wrap">
+    <div class="filtri">
+      @for (t of tipi; track t) {
+        <button
+          class="filtro-btn"
+          [class.active]="filtroAttivo() === t"
+          (click)="setFiltro(t)"
+        >{{ t }}</button>
+      }
+    </div>
+
+    <div class="masonry">
+      @for (e of eventiFiltrati(); track e.id; let i = $index) {
+        <div
+          class="masonry-item"
+          [class]="'item-' + (i % 6)"
+          appReveal
+          (click)="apriLightbox(e)"
+        >
+          <div class="img-wrap">
             <img [src]="e.immagine" [alt]="e.titolo" loading="lazy" />
+            <div class="m-overlay"></div>
           </div>
-          <div class="evento-info">
-            <div class="evento-meta">
-              <span>{{ e.tipo }}</span>
-              <span>·</span>
-              <span>{{ e.anno }}</span>
-            </div>
-            <h4>{{ e.titolo }}</h4>
-            <div class="evento-tags">
-              @for (s of e.servizi; track s) {
-                <span>{{ s }}</span>
-              }
+          <div class="m-info">
+            <div class="m-meta">{{ e.tipo }} · {{ e.anno }}</div>
+            <h3>{{ e.titolo }}</h3>
+            <div class="m-tags">
+              @for (s of e.servizi; track s) { <span>{{ s }}</span> }
             </div>
           </div>
-        </a>
+        </div>
       }
     </div>
   </div>
@@ -202,23 +225,149 @@
   </div>
 </section>
 
-<!-- ═══════════════════ CTA FINALE ═══════════════════ -->
-<section class="cta-final">
+<!-- ═══════════════════ CONTATTI ═══════════════════ -->
+<section class="section contatti-section" id="contatti">
   <div class="container-x">
-    <div class="cta-box" appReveal>
-      <div class="cta-bg"></div>
-      <div class="cta-content">
-        <span class="eyebrow">Pronto a iniziare</span>
-        <h2>
-          Hai una data.<br>
-          <span class="italic accent">Noi abbiamo il resto.</span>
-        </h2>
-        <p>
-          Raccontaci il tuo evento: in 24 ore ti rispondiamo con un sopralluogo
-          o un preventivo dettagliato. Senza impegno.
+    <div class="contatti-grid">
+      <div class="contatti-text">
+        <span class="eyebrow">Iniziamo</span>
+        <h2>Hai una data.<br><span class="italic accent">Noi abbiamo il resto.</span></h2>
+        <p class="lead">
+          Raccontaci il tuo evento: ti rispondiamo
+          <strong>entro 24 ore</strong> con un sopralluogo o un preventivo dettagliato.
+          Senza impegno.
         </p>
-        <a routerLink="/contatti" class="btn-primary">
-          Iniziamo
+
+        <div class="contact-info">
+          <a href="tel:+390000000000" class="info-item">
+            <div class="info-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="lbl">Telefono</div>
+              <div class="val">+39 000 000 0000</div>
+            </div>
+          </a>
+          <a href="mailto:info@altrafrequenza.it" class="info-item">
+            <div class="info-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <div>
+              <div class="lbl">Email</div>
+              <div class="val">info&#64;altrafrequenza.it</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="form-wrap" appReveal>
+        @if (!submitted()) {
+          <form (submit)="onSubmit($event)" class="form">
+            <div class="form-header">
+              <span class="form-num">01</span>
+              <h3>Richiedi un preventivo</h3>
+            </div>
+
+            <div class="field">
+              <label>Nome e cognome *</label>
+              <input type="text" required [value]="form().nome"
+                (input)="form.set({ ...form(), nome: $any($event.target).value })"
+                placeholder="Mario Rossi" />
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label>Email *</label>
+                <input type="email" required [value]="form().email"
+                  (input)="form.set({ ...form(), email: $any($event.target).value })"
+                  placeholder="mario@email.it" />
+              </div>
+              <div class="field">
+                <label>Telefono</label>
+                <input type="tel" [value]="form().telefono"
+                  (input)="form.set({ ...form(), telefono: $any($event.target).value })"
+                  placeholder="+39 ..." />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="field">
+                <label>Tipo evento</label>
+                <select [value]="form().tipoEvento"
+                  (change)="form.set({ ...form(), tipoEvento: $any($event.target).value })">
+                  <option value="">Seleziona...</option>
+                  @for (t of tipiEvento; track t) {
+                    <option [value]="t">{{ t }}</option>
+                  }
+                </select>
+              </div>
+              <div class="field">
+                <label>Data evento</label>
+                <input type="date" [value]="form().data"
+                  (input)="form.set({ ...form(), data: $any($event.target).value })" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Raccontaci l'evento *</label>
+              <textarea required rows="5" [value]="form().messaggio"
+                (input)="form.set({ ...form(), messaggio: $any($event.target).value })"
+                placeholder="Tipologia, location, partecipanti, servizi richiesti..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary form-submit">
+              Invia richiesta
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M5 12h14M13 5l7 7-7 7"/>
+              </svg>
+            </button>
+          </form>
+        } @else {
+          <div class="form-success">
+            <div class="success-icon">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <h3>Richiesta inviata.</h3>
+            <p>Grazie {{ form().nome }}. Ti ricontattiamo entro 24 ore.</p>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ MODAL SETTORE ═══════════════════ -->
+@if (settoreModal(); as s) {
+  <div class="modal-backdrop" (click)="chiudiSettore()">
+    <button class="modal-close" (click)="chiudiSettore()" aria-label="Chiudi">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M18 6L6 18M6 6l12 12"/>
+      </svg>
+    </button>
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-img">
+        <img [src]="s.immagine" [alt]="s.titolo" />
+        <div class="modal-num">{{ s.numero }}</div>
+      </div>
+      <div class="modal-info">
+        <span class="eyebrow">Settore · {{ s.titolo }}</span>
+        <h2>{{ s.claim }}</h2>
+        <p>{{ s.descrizione }}</p>
+        <h4>Cosa offriamo</h4>
+        <ul class="servizi-list">
+          @for (servizio of s.servizi; track servizio) {
+            <li>{{ servizio }}</li>
+          }
+        </ul>
+        <a href="#contatti" class="btn-primary" (click)="chiudiSettore()">
+          Richiedi un preventivo
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
             <path d="M5 12h14M13 5l7 7-7 7"/>
           </svg>
@@ -226,4 +375,28 @@
       </div>
     </div>
   </div>
-</section>
+}
+
+<!-- ═══════════════════ LIGHTBOX GALLERY ═══════════════════ -->
+@if (lightbox(); as lb) {
+  <div class="modal-backdrop" (click)="chiudiLightbox()">
+    <button class="modal-close" (click)="chiudiLightbox()" aria-label="Chiudi">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M18 6L6 18M6 6l12 12"/>
+      </svg>
+    </button>
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-img">
+        <img [src]="lb.immagine" [alt]="lb.titolo" />
+      </div>
+      <div class="modal-info">
+        <span class="eyebrow">{{ lb.tipo }} · {{ lb.anno }}</span>
+        <h2>{{ lb.titolo }}</h2>
+        <h4>Servizi forniti</h4>
+        <div class="lightbox-tags">
+          @for (s of lb.servizi; track s) { <span>{{ s }}</span> }
+        </div>
+      </div>
+    </div>
+  </div>
+}
