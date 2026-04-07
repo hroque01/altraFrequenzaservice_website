@@ -1,0 +1,15 @@
+<header class="sticky top-0 z-50 backdrop-blur bg-white/80 border-b">
+  <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+    <a routerLink="/" class="text-xl font-bold tracking-wide">Altra Frequenza</a>
+    <nav class="flex gap-6">
+      @for (item of menu; track item.path) {
+        <a
+          [routerLink]="item.path"
+          routerLinkActive="font-semibold underline"
+          [routerLinkActiveOptions]="{ exact: !!item.exact }"
+          class="hover:opacity-70 transition"
+        >{{ item.label }}</a>
+      }
+    </nav>
+  </div>
+</header>
