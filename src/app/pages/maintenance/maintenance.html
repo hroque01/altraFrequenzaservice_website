@@ -1,0 +1,28 @@
+<section class="maintenance">
+  <div class="glow"></div>
+  <div class="container-x maintenance__inner">
+    <span class="eyebrow">Manutenzione in corso</span>
+
+    <h1 class="maintenance__title">
+      Stiamo accordando<br>
+      ogni <span class="accent">frequenza</span>.
+    </h1>
+
+    <p class="maintenance__lead">
+      Il sito è temporaneamente offline per aggiornamenti.
+      Torneremo presto, più precisi e più rapidi di prima.
+    </p>
+
+    <div class="maintenance__contacts">
+      <a class="btn-primary" [href]="'mailto:' + email">
+        Scrivici
+        <span aria-hidden="true">→</span>
+      </a>
+      <a class="btn-ghost" [href]="'tel:' + tel.replace(' ', '')">
+        {{ tel }}
+      </a>
+    </div>
+
+    <p class="maintenance__email">{{ email }}</p>
+  </div>
+</section>

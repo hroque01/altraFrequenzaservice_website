@@ -1,0 +1,84 @@
+.maintenance {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(255, 106, 61, 0.08), transparent 60%),
+    var(--color-bg);
+}
+
+.glow {
+  position: absolute;
+  width: 720px;
+  height: 720px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(255, 106, 61, 0.12), transparent 65%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.maintenance__inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.eyebrow {
+  // Reuse global eyebrow but tweak alignment
+  &::before { background: var(--color-accent); }
+}
+
+.maintenance__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 7vw, 5.5rem);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  max-width: 14ch;
+}
+
+.accent {
+  color: var(--color-accent);
+}
+
+.maintenance__lead {
+  max-width: 52ch;
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.maintenance__contacts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.maintenance__email {
+  margin-top: 0.25rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  color: var(--color-text-dim);
+}
+
+@media (max-width: 640px) {
+  .glow {
+    width: 480px;
+    height: 480px;
+  }
+}
