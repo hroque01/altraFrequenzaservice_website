@@ -50,9 +50,13 @@ Lavorare direttamente su `main`, riprendendo i pezzi utili da `site-full`
 
 ## Cose da NON dimenticare prima del go-live
 
-- [ ] Aggiornare i contatti placeholder: nel footer del sito completo c'erano
-      `+39 000 000 0000` e `info@altrafrequenza.it` — confermare con il cliente
-      i valori reali e sostituirli ovunque (footer + pagina Contatti +
+- [ ] Aggiornare i contatti placeholder: nel footer del sito completo (branch
+      `site-full`) ci sono ancora `+39 000 000 0000` e `info@altrafrequenza.it`.
+      I **valori reali** (già usati sulla maintenance page del branch `main`,
+      vedi `src/app/pages/maintenance/maintenance.ts`) sono:
+      - Email: `daniele.gatti@altafrequenzaservice.it`
+      - Telefono: `+39 379 198 3625` (raw: `+393791983625`)
+      Sostituirli ovunque nel sito completo (footer + pagina Contatti +
       eventuali `mailto:` / `tel:`).
 - [ ] Verificare che le immagini Unsplash placeholder in
       `src/app/shared/site-data.ts` siano sostituite con foto reali del cliente
